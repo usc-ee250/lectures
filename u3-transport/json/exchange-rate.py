@@ -1,6 +1,17 @@
 import requests
 import json
+
 #https://open.er-api.com/v6/latest/USD
+
+# Documentation: https://docs.openexchangerates.org/reference/api-introduction
+#
+# Other major trading currencies are: 
+# Japanese Yen (JPY), British Pound Sterling (GBP), 
+# Australian Dollar (AUD), Canadian Dollar (CAD), 
+# Swiss Franc (CHF), Chinese Yuan (Renminbi; CNY), 
+# Swedish Krona (SEK), New Zealand Dollar (NZD), 
+# and the Mexican Peso (MXN).
+
 def extractData(url):
   resp = requests.get(url)
   db=json.loads(resp.text)
