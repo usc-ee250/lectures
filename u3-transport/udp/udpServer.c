@@ -14,15 +14,18 @@
 //for Mac OS X
 #include <stdlib.h>
 
-#define LOCAL_SERVER_PORT 1500
+#define LOCAL_SERVER_PORT 5555
 #define MAX_MSG 100
 
 int main(int argc, char *argv[]) {
   
-  int sd, rc, n, cliLen;
+  int sd, rc, n;
+  socklen_t cliLen;
   struct sockaddr_in cliAddr, servAddr;
   char msg[MAX_MSG];
+  char response[MAX_MSG];
   int broadcast = 1;
+  int numConn = 0;
   
   /* socket creation */
   sd=socket(AF_INET, SOCK_DGRAM, 0);
@@ -71,7 +74,13 @@ int main(int argc, char *argv[]) {
     printf("%s: from %s:UDP%u : %s \n", 
 	   argv[0],inet_ntoa(cliAddr.sin_addr),
 	   ntohs(cliAddr.sin_port),msg);
-    
+
+    numConn++;
+    snprintf(response, 100, "Thank you. Yours was message %d received by the server.\n", numConn);
+    rc = sendto(sd, response, strlen(response)+1, 0,
+                (struct sockaddr *) &cliAddr,
+                sizeof(cliAddr));
+
   }/* end of server infinite loop */
 
 return 0;
