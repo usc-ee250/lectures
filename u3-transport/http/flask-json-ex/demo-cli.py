@@ -12,7 +12,8 @@ myjson = {
 
 }
 # make a string with the appropriate URL to the server to send
-# a POST request
+# a POST request. Use the 'host' string variable and concatenate
+# other info to it
 post_url = ""
 
 r = requests.post('http://' + host + ':5000/submit', json=myjson)

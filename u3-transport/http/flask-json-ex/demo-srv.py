@@ -14,6 +14,12 @@ def check():
     else:
         return myname + " has successfully submitted"
 
+@app.route("/all", methods=["GET"])
+def all():
+    global succeeded
+    names = "<br>".join(list(succeeded))
+    return names
+
 @app.route('/submit', methods=["POST"])
 def verify_stu():
     global succeeded
