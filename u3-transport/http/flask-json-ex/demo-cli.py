@@ -14,14 +14,14 @@ myjson = {
 # make a string with the appropriate URL to the server to send
 # a POST request. Use the 'host' string variable and concatenate
 # other info to it
-post_url = ""
+post_url = "http://"
 
-r = requests.post('http://' + host + ':5000/submit', json=myjson)
+r = requests.post(post_url, json=myjson)
 print(f"Status Code: {r.status_code}, Response: {r.text}")
 
 # make a string with the appropriate URL to the server to 
 #  check if your POST was successful
-check_url = ""
-r = requests.get('http://' + host + ':5000/check?name=prof-red')
+check_url = "http://"
+r = requests.get(check_url)
 print(f"Status Code: {r.status_code}, Response: {r.text}")
 
