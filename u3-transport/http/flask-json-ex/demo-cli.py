@@ -7,24 +7,20 @@ import json
 host = "13.64.52.196"  # Azure EE-250
 if len(sys.argv) > 1:
     host = sys.argv[1]
+# make a dictionary with the appropriate information
 myjson = {
-    'name' : 'prof-red',
-    'scores' : [56, 66, 56],
-    'dp-the-best' : True
+
 }
-json_string = json.dumps(myjson)
+# make a string with the appropriate URL to the server to send
+# a POST request
+post_url = ""
+
 r = requests.post('http://' + host + ':5000/submit', json=myjson)
 print(f"Status Code: {r.status_code}, Response: {r.text}")
+
+# make a string with the appropriate URL to the server to 
+#  check if your POST was successful
+check_url = ""
 r = requests.get('http://' + host + ':5000/check?name=prof-red')
 print(f"Status Code: {r.status_code}, Response: {r.text}")
 
-# r = requests.post('http://localhost:5000/submit', 
-#                   json={'name':'caleb', 'scores' : [56, 16, 56], 'dp-the-best' : True})
-# print(f"Status Code: {r.status_code}, Response: {r.json()}")
-
-# r = requests.post('http://localhost:5000/submit', 
-#                   json={'name':'bronny', 'scores' : [56, 66, 56], 'dp-the-best' : False})
-# print(f"Status Code: {r.status_code}, Response: {r.json()}")
-
-#r = requests.get('http://' + host + ':5000/check?name=gprof2')
-#print(f"Status Code: {r.status_code}, Response: {r.text}")

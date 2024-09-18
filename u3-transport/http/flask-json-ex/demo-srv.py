@@ -28,9 +28,9 @@ def verify_stu():
     elif("dp-the-best" not in content):
         return "key 'dp-the-best' not found", 400
     scores = content["scores"]
-    if( len(scores) < 3):
+    if( len(scores) < 2):
         return "not enough scores", 400
-    if(scores[0] != 56 or scores[1] != 66 or scores[2] != 56):
+    if(scores[0] != 27 or scores[1] != 48):
         return "Wrong scores!", 400
     if(content["dp-the-best"] == False):
         return "You should consider changing your taste in soft drinks", 400
@@ -40,4 +40,4 @@ def verify_stu():
 		
 if __name__ == "__main__":
     app.run()
-
+#    app.run(host="0.0.0.0")
