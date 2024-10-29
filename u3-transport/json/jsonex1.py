@@ -11,7 +11,7 @@ print(person)
 print("\n\n")
 # Update the data using Python object syntax
 person["friends"].append("Aaron")
-
+person["scores"]["MT"] = 100.0
 # Convert back to JSON
 new_json = json.dumps(person, indent=4)
 print("Updated: ")

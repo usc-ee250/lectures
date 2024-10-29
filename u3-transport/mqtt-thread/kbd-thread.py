@@ -8,6 +8,7 @@ def kbd_thread():
                 k = input("")
                 if(k == 'a'):
                         print("Got an a")
+                        print(x)
                         # do other tasks
                 elif(k == 'w'):
                         print("Got an w")
@@ -20,7 +21,7 @@ thread = threading.Thread(target=kbd_thread)
 #thread.daemon = True
 # start the thread executing
 thread.start()
-
+x = 42
 # main task - Replace with whatever useful work you want to do
 # or just have it sleep 
 # Press Ctrl-C to stop the program

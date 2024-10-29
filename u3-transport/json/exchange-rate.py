@@ -14,7 +14,9 @@ import json
 
 def extractData(url):
   resp = requests.get(url)
+  print(resp.text)
   db=json.loads(resp.text)
+
   return db["base_code"], db["rates"]
 
 # Download the exchange rate for today

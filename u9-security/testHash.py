@@ -40,7 +40,7 @@ write_string_to_file(string, text_filename)
 write_string_to_file(string2, text2_filename)
 text_hash = hash_file(text_filename)
 write_hash_to_file(text_hash, hash_filename)
-
+input("Press Enter to continue...")
 if verify_hash(text2_filename, hash_filename):
     print("The hash matches!")
 else:

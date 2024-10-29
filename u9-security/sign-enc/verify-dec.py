@@ -24,8 +24,8 @@ def doDecrypt(enc_sign_file, sign_key_file, sym_key_file, out_msg_file):
     with open(enc_sign_file, "rb") as bin_file:
         raw_contents = bin_file.read()
         # Separate the hash and the remaining part of the message
-        recv_encrypted_hash = raw_contents[:256]
         recv_encrypted_msg = raw_contents[256:]
+        recv_encrypted_hash = raw_contents[:256]
 
     # Read Necessary Public/Private Signature Key from File
     with open(sign_key_file, "rb") as key_file:
