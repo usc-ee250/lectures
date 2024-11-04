@@ -31,7 +31,7 @@ def doEncrypt(msg, pvt_key_file, pub_key_file, sym_key_file, enc_file):
     encrypted_msg = cipher_suite.encrypt(msg)
 
     h = hashes.SHA256()
-    hasher = hashes.Hash(h)
+    hasher = hashes.Hash(h, backend=default_backend())
     hasher.update(encrypted_msg)
     digest = hasher.finalize()
     print(f"Digest: {digest}")
@@ -42,6 +42,7 @@ def doEncrypt(msg, pvt_key_file, pub_key_file, sym_key_file, enc_file):
     private_key = rsa.generate_private_key(
         public_exponent=65537,
         key_size=2048,
+	backend=default_backend(),
     )
 
     # Print Private Key
