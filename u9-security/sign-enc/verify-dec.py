@@ -24,14 +24,14 @@ def doDecrypt(enc_sign_file, sign_key_file, sym_key_file, out_msg_file):
     with open(enc_sign_file, "rb") as bin_file:
         raw_contents = bin_file.read()
         # Separate the hash and the remaining part of the message
-        recv_encrypted_msg = raw_contents[256:]
-        recv_encrypted_hash = raw_contents[:256]
+        recv_encrypted_msg = # fill me in - remember we can splice with [start:end]
+        recv_encrypted_hash = # fill me in - remember we can splice with [start:end]
 
     # Read Necessary Public/Private Signature Key from File
     with open(sign_key_file, "rb") as key_file:
         # Use the appropriate function "load_pem_private_key" or
         # "load_pem_public_key"
-        sign_key = serialization.load_pem_public_key(
+        sign_key = serialization.__________________ (  # fill in the appropriate function name.
             key_file.read(),
             backend=default_backend()
         )
@@ -39,15 +39,15 @@ def doDecrypt(enc_sign_file, sign_key_file, sym_key_file, out_msg_file):
     # Hash non-signature portion of the encrypted message
     h = hashes.SHA256()
     hasher = hashes.Hash(h)
-    hasher.update(recv_encrypted_msg)  # fill me in.
+    hasher.update( ____ ) # fill me in - what should we hash?
     digest = hasher.finalize()
     print(f"Digest: {digest}")
 
     # raises an InvalidSignature exception if signatures don't match
     # Use the sign_key.verify() function
     sign_key.verify(
-        recv_encrypted_hash,
-        digest,
+        ____________,              # fill me in...what should we "decrypt" to verify the integrity
+        ____________,              # fill me in...what should we compare the previous argument with
         padding.PSS(
             mgf=padding.MGF1(hashes.SHA256()),
             salt_length=padding.PSS.MAX_LENGTH
@@ -63,7 +63,8 @@ def doDecrypt(enc_sign_file, sign_key_file, sym_key_file, out_msg_file):
 
     # Now that we've verified the signature, decrypt the message content
     cipher_suite = Fernet(key)
-    decrypted_text = cipher_suite.decrypt(recv_encrypted_msg)
+
+    decrypted_text = cipher_suite.decrypt(recv_encrypted_msg) # call the decrypt function appropriate to produce decrypted_text
 
     print(f"Decrypted Text: {decrypted_text}")
     print("")
@@ -78,3 +79,5 @@ if len(sys.argv) < 5:
     print("usage: verify-dec.py enc_sign_file sign_key_file sym_key_file out_msg_file")
     sys.exit(1)
 doDecrypt(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+
+
