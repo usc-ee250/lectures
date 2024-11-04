@@ -38,7 +38,7 @@ def doDecrypt(enc_sign_file, sign_key_file, sym_key_file, out_msg_file):
 
     # Hash non-signature portion of the encrypted message
     h = hashes.SHA256()
-    hasher = hashes.Hash(h)
+    hasher = hashes.Hash(h,backend=default_backend())
     hasher.update(recv_encrypted_msg)  # fill me in.
     digest = hasher.finalize()
     print(f"Digest: {digest}")
